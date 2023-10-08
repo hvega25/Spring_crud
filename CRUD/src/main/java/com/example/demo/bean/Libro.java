@@ -2,10 +2,30 @@ package com.example.demo.bean;
 
 public class Libro {
 	private int id;
+	private String titulo;
 	private String autor;
 	private String editorial;
 	private String fecha;
 	private String tematica;
+	
+	
+	
+	public Libro(int id, String titulo, String autor, String editorial, String fecha, String tematica) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.editorial = editorial;
+		this.fecha = fecha;
+		this.tematica = tematica;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -41,18 +61,10 @@ public class Libro {
 		super();
 		
 	}
-	public Libro(int id, String autor, String editorial, String fecha, String tematica) {
-		super();
-		this.id = id;
-		this.autor = autor;
-		this.editorial = editorial;
-		this.fecha = fecha;
-		this.tematica = tematica;
-	}
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", autor=" + autor + ", editorial=" + editorial + ", fecha=" + fecha + ", tematica="
-				+ tematica + "]";
+		return "Libro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", fecha="
+				+ fecha + ", tematica=" + tematica + "]";
 	}
 	
 	
