@@ -2,6 +2,7 @@ package com.example.demo.controladores;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import com.example.demo.bean.Libro;
 import com.example.demo.bean.Usuario;
 import com.example.demo.repository.BaseDatos;
 import com.example.demo.repository.BaseDatos2;
+import com.example.demo.repository.BaseDatos3;
+import com.example.demo.repository.BaseDatos3Service;
 
 import org.springframework.ui.Model;
 
@@ -21,11 +24,17 @@ import org.springframework.ui.Model;
 
 public class controlador {
 
+	/*
+	 * puertos usados para conexiones springboot = 8090 xampp = localhost 8080:3306
+	 */
+
 	// conexion a la base de datos con arraylist
 	// BaseDatos bd = new BaseDatos();
 	Usuario usuario;
 	// nueva conexion a mysql
-	BaseDatos2 bd = new BaseDatos2();
+	// BaseDatos2 bd = new BaseDatos2();
+	@Autowired
+	BaseDatos3Service bd;
 
 	@GetMapping("/")
 	public String iniciar(Model model) {
@@ -41,7 +50,7 @@ public class controlador {
 			ArrayList<Libro> libros = bd.getLibros();
 			model.addAttribute("usuario", usuario);
 			model.addAttribute("libros", libros);
-			return "consulta";
+			return "consulta"; 
 		} else
 			return "login";
 
@@ -49,8 +58,10 @@ public class controlador {
 
 	@PostMapping("/insertar")
 	public String insertar(Libro libro, Model model) {
+		//esto sirve para la basedatos y basedatos2
 		bd.inserta(libro);
 		ArrayList<Libro> libros = bd.getLibros();
+
 		model.addAttribute("usuario", this.usuario);
 		model.addAttribute("libros", libros);
 		model.addAttribute("boton", "Inserta Libro");
