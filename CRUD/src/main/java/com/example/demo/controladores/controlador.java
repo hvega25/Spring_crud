@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.bean.Libro;
 import com.example.demo.bean.Usuario;
 import com.example.demo.repository.BaseDatos;
+import com.example.demo.repository.BaseDatos2;
 
 import org.springframework.ui.Model;
 
@@ -20,8 +21,11 @@ import org.springframework.ui.Model;
 
 public class controlador {
 
-	BaseDatos bd = new BaseDatos(); 
+	// conexion a la base de datos con arraylist
+	// BaseDatos bd = new BaseDatos();
 	Usuario usuario;
+	// nueva conexion a mysql
+	BaseDatos2 bd = new BaseDatos2();
 
 	@GetMapping("/")
 	public String iniciar(Model model) {
@@ -65,10 +69,10 @@ public class controlador {
 		model.addAttribute("action", "/insertar");
 		return "consulta";
 	}
-	
+
 	@GetMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model) {
-		//mirar este error del pdf 
+		// mirar este error del pdf
 		Libro libro = bd.getLibro(id);
 		ArrayList<Libro> libros = bd.getLibros();
 		model.addAttribute("libros", libros);
@@ -78,7 +82,7 @@ public class controlador {
 		model.addAttribute("action", "/modificar");
 		return "consulta";
 	}
-	
+
 	@PostMapping("/modificar")
 	public String modificar2(Libro libro, Model model) {
 		bd.modifica(libro);
@@ -91,6 +95,5 @@ public class controlador {
 		model.addAttribute("action", "/insertar");
 		return "consulta";
 	}
-
 
 }
