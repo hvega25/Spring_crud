@@ -37,7 +37,7 @@ public class controlador {
 	BaseDatos3Service bd;
 
 	@GetMapping("/")
-	public String iniciar(Model model) {
+	public String iniciar(Model model) { 
 		// Importante al importar la libreria import org.springframework.ui.Model;
 		model.addAttribute("titulo", "FORMULARIO DE ACCESO");
 		return "login";
