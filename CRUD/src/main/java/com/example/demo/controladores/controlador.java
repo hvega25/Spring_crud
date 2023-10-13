@@ -40,7 +40,7 @@ public class controlador {
 	public String iniciar(Model model) { 
 		// Importante al importar la libreria import org.springframework.ui.Model;
 		model.addAttribute("titulo", "FORMULARIO DE ACCESO");
-		return "login";
+		return "login"; 
 	}
 
 	@PostMapping("/")
@@ -51,7 +51,7 @@ public class controlador {
 			model.addAttribute("usuario", usuario);
 			model.addAttribute("libros", libros);
 			return "consulta"; 
-		} else
+		} else 
 			return "login";
 
 	}
